@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Alice",
+        "role": "ROLE_USER"
+    },
+    {
+        "name": "Bob",
+        "role": "ROLE_ADMIN"
+    },
+    {
+        "name": "Charlie",
+        "role": "ROLE_USER"
+    },
+    {
+        "name": "David",
+        "role": "ROLE_USER"
+    },
+    {
+        "name": "Eve",
+        "role": "ROLE_ADMIN"
+    },
+    {
+        "name": "Frank",
+        "role": "ROLE_USER"
+    },
+    {
+        "name": "Grace",
+        "role": "ROLE_USER"
+    },
+    {
+        "name": "Hannah",
+        "role": "ROLE_ADMIN"
+    },
+    {
+        "name": "Ivy",
+        "role": "ROLE_USER"
+    },
+    {
+        "name": "Jack",
+        "role": "ROLE_USER"
+    }
+]
