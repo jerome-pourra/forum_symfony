@@ -10,8 +10,8 @@ abstract class AbstractFixtures extends Fixture
 {
 
     private ObjectManager $manager;
-
-    private $kernel;
+    private KernelInterface $kernel;
+    protected int $dummyCount = 50;
 
     public function __construct(KernelInterface $kernel)
     {
@@ -20,13 +20,11 @@ abstract class AbstractFixtures extends Fixture
 
     public function loadDummy(ObjectManager $manager): void
     {
-        // Need to be overriden in child class
         return;
     }
 
     public function loadDemo(ObjectManager $manager): void
     {
-        // Need to be overriden in child class
         return;
     }
 

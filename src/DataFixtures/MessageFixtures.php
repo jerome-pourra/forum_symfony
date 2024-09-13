@@ -12,11 +12,12 @@ class MessageFixtures extends AbstractFixtures implements DependentFixtureInterf
 {
 
     private const JSON_FILENAME = 'messages.json';
+    protected int $dummyCount = 50;
 
     public function loadDummy(ObjectManager $manager): void
     {
 
-        for ($i = 0; $i < 500; $i++) {
+        for ($i = 0; $i < $this->dummyCount; $i++) {
             $entity = new Message();
             $entity->setContent("Ceci est le contenu du message $i");
             $entity->setUser($this->getRandomReference(User::class));
@@ -38,7 +39,7 @@ class MessageFixtures extends AbstractFixtures implements DependentFixtureInterf
             $entity = new Message();
             $entity->setContent($item['content']);
             $entity->setUser($this->getReference(User::class . '_' . $item['user']));
-            $entity->setSubject($this->getReference(Subject::class . '_' . $item['Subject']));
+            $entity->setSubject($this->getReference(Subject::class . '_' . $item['subject']));
 
             $manager->persist($entity);
 

@@ -10,11 +10,12 @@ class UserFixtures extends AbstractFixtures
 {
 
     private const JSON_FILENAME = 'users.json';
+    protected int $dummyCount = 50;
 
     public function loadDummy(ObjectManager $manager): void
     {
         
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < $this->dummyCount; $i++) {
 
             $entity = new User();
             $entity->setName("User $i");
