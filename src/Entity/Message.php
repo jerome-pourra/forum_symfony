@@ -12,11 +12,11 @@ class Message extends AbstractEntity
     #[ORM\Column(type: 'string', length: 4096)]
     private ?string $content = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'messages')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(targetEntity: Subjet::class, inversedBy: 'messages')]
-    private ?Subjet $subjet = null;
+    #[ORM\ManyToOne(targetEntity: Subject::class)]
+    private ?Subject $subject = null;
 
     public function getContent(): ?string
     {
@@ -40,14 +40,14 @@ class Message extends AbstractEntity
         return $this;
     }
 
-    public function getSubjet(): ?Subjet
+    public function getSubject(): ?Subject
     {
-        return $this->subjet;
+        return $this->subject;
     }
 
-    public function setSubjet(?Subjet $subjet): self
+    public function setSubject(?Subject $subject): self
     {
-        $this->subjet = $subjet;
+        $this->subject = $subject;
         return $this;
     }
 
