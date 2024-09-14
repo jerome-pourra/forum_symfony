@@ -1,17 +1,7 @@
 <ul class="pagination pagination-sm justify-content-end mb-0">
-	<li class="page-item">
-		<a class="page-link" href="#">&laquo;</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">1</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">2</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">3</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">&raquo;</a>
-	</li>
+	{% for page in this.getPages() %}
+		<li class="page-item {{ page.active ? 'active' : '' }}">
+			<a class="page-link" href="{{ path('app_subject_list', {'offset': page.offset }) }}">{{ page.num }}</a>
+		</li>
+	{% endfor %}
 </ul>

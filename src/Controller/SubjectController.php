@@ -25,9 +25,11 @@ class SubjectController extends AbstractController
     #[Route('', name: 'app_subject_list')]
     public function list(Request $request): Response
     {
-        $subjects = $this->service->getAll($request);
+        $result = $this->service->getList($request);
         return $this->render('subjects/list.html.twig', [
-            'subjects' => $subjects
+            'items' => $result['items'],
+            'count' => $result['count'],
+            'context' => $result['context'],
         ]);
     }
 }

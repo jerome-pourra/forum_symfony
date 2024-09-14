@@ -5,6 +5,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class RequestContext
 {
+
+    private const MIN_LIMIT = 1;
+    private const MAX_LIMIT = 50;
+    private const DEFAULT_LIMIT = 10;
+
+    private const MIN_OFFSET = 0;
+    private const DEFAULT_OFFSET = 0;
+
     private Request $request;
     private array $filters = [];
     private ?int $limit = null;
@@ -13,11 +21,19 @@ class RequestContext
 
     public function __construct(Request $request, array $filtersKeys = [])
     {
+
         $this->request = $request;
-        $this->limit = $request->query->get('limit');
-        $this->offset = $request->query->get('offset');
-        $this->orderBy = $request->query->get('orderBy');
+
+        $limit = $request->query->getInt('limit', self::DEFAULT_LIMIT);
+        $this->limit = min(max($limit, self::MIN_LIMIT), self::MAX_LIMIT);
+
+        $offset = $request->query->getInt('offset', self::DEFAULT_OFFSET);
+        $this->offset = max($offset, self::MIN_OFFSET);
+
+        $this->orderBy = $request->query->get('orderBy', null);
+
         $this->buildFilters($request, $filtersKeys);
+
     }
 
     public function getFilters(): array

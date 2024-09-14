@@ -32,9 +32,17 @@ class SubjectService
         ];
     }
 
-    public function getAll(Request $request): array
-    {
+    public function getList(Request $request): array {
+
         $context = new RequestContext($request, $this->getFilterKeys());
-        return $this->em->getRepository($this->getRepository())->findBy($context->getFilters(), $context->getOrderBy(), $context->getLimit(), $context->getOffset());
+        $items = $this->em->getRepository($this->getRepository())->findBy($context->getFilters(), $context->getOrderBy(), $context->getLimit(), $context->getOffset());
+        $count = count($this->em->getRepository($this->getRepository())->findBy($context->getFilters()));
+
+        return [
+            'items' => $items,
+            'count' => $count,
+            'context' => $context,
+        ];
+        
     }
 }

@@ -10,13 +10,13 @@
 			<twig:Utils:Filters/>
 		</div>
 		<div class="col-4">
-			<twig:Utils:Pagination/>
+			<twig:Utils:Pagination totalCount="{{ count }}" context="{{ context }}"/>
 		</div>
 	</nav>
 
 	<ul class="list-group">
-		{% for subject in subjects %}
-			<twig:Subject:SubjectRow subject="{{ subject }}"/>
+		{% for entity in items %}
+			<twig:Subject:SubjectRow subject="{{ entity }}"/>
 		{% endfor %}
 	</ul>
 
