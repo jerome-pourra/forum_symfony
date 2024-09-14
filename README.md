@@ -16,3 +16,5 @@ Il y a plusieurs fichiers .sh dans le dossier ./scripts
 - start.sh - Lance le serveur symfony
 - reset_db.sh - Réinitialise et recréer la base de données
 - fixtures.sh - Permet de sauvegarder des données de demo dans la base
+
+Rendez-vous sur http://localhost:8000

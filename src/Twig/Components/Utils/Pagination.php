@@ -7,7 +7,7 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 #[AsTwigComponent]
 class Pagination
 {
-    public int $totalCount;
+    public int $totalcount;
     public RequestContext $context;
 
     public function getCurrentPage(): int
@@ -41,7 +41,7 @@ class Pagination
 
     private function getLastPage(): int
     {
-        return ceil($this->totalCount / $this->context->getLimit());
+        return ceil($this->totalcount / $this->context->getLimit());
     }
 
     private function getPageOffset(int $page): int

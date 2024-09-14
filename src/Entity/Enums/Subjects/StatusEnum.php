@@ -4,7 +4,7 @@ namespace App\Entity\Enums\Subjects;
 
 enum StatusEnum: string
 {
-    case ACTIVE = 'active';
-    case CLOSED = 'closed';
-    case VERIFIED = 'verified';
+    case Active = 'active';
+    case Closed = 'closed';
+    case Verified = 'verified';
 }

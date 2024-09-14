@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Subject;
+use App\Form\SubjectFiltersType;
 use App\Service\SubjectService;
 use App\Service\Ui\SubjectUiService;
 use App\Utils\RequestContext;
@@ -25,11 +26,16 @@ class SubjectController extends AbstractController
     #[Route('', name: 'app_subject_list')]
     public function list(Request $request): Response
     {
+
+        $form = $this->createForm(SubjectFiltersType::class);
+        $form->handleRequest($request);
+
         $result = $this->service->getList($request);
         return $this->render('subjects/list.html.twig', [
             'items' => $result['items'],
             'count' => $result['count'],
             'context' => $result['context'],
+            'formFilters' => $form->createView(),
         ]);
     }
 }

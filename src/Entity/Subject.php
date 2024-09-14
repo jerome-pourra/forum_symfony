@@ -15,7 +15,7 @@ class Subject extends AbstractEntity
     private ?string $title = null;
 
     #[ORM\Column(type: Types::STRING, length: 255, enumType: StatusEnum::class)]
-    private StatusEnum $status = StatusEnum::ACTIVE;
+    private StatusEnum $status = StatusEnum::Active;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     private ?User $user = null;

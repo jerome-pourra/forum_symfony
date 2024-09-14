@@ -14,15 +14,15 @@ class SubjectRow
     public function getIconFromStatus(): array
     {
         $icon = match ($this->subject->getStatus()) {
-            StatusEnum::ACTIVE => [
+            StatusEnum::Active => [
                 'icon' => 'check_circle',
                 'color' => 'success',
             ],
-            StatusEnum::CLOSED => [
+            StatusEnum::Closed => [
                 'icon' => 'cancel',
                 'color' => 'danger',
             ],
-            StatusEnum::VERIFIED => [
+            StatusEnum::Verified => [
                 'icon' => 'verified',
                 'color' => 'primary',
             ],

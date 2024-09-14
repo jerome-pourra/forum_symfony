@@ -8,10 +8,17 @@
 
 	<nav class="row mb-3">
 		<div class="col-8">
-			<twig:Utils:Filters/>
+			<button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false">
+				<i class="material-symbols-outlined" style="font-size: 0.875rem;">filter_alt</i>
+			</button>
+			<div class="collapse" id="collapseFilters">
+				<div class="border rounded p-3 mt-3">
+					<twig:Utils:FormFilters form="{{ formFilters }}"/>
+				</div>
+			</div>
 		</div>
 		<div class="col-4">
-			<twig:Utils:Pagination totalCount="{{ count }}" context="{{ context }}"/>
+			<twig:Utils:Pagination totalcount="{{ count }}" context="{{ context }}"/>
 		</div>
 	</nav>
 
