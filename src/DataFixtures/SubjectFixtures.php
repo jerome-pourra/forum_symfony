@@ -2,8 +2,10 @@
 
 namespace App\DataFixtures;
 use App\DataFixtures\AbstractFixtures;
+use App\Entity\Enums\Subjects\StatusEnum;
 use App\Entity\Subject;
 use App\Entity\User;
+use App\Utils\EnumTools;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
@@ -15,11 +17,12 @@ class SubjectFixtures extends AbstractFixtures implements DependentFixtureInterf
 
     public function loadDummy(ObjectManager $manager): void
     {
-
+        
         for ($i = 0; $i < $this->dummyCount; $i++) {
 
             $entity = new Subject();
             $entity->setTitle("Ceci est le titre du sujet $i");
+            $entity->setStatus(EnumTools::getRandomEnumValue(StatusEnum::class));
             $entity->setUser($this->getRandomReference(User::class));
 
             $manager->persist($entity);

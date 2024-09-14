@@ -2,15 +2,20 @@
 
 namespace App\Entity;
 
+use App\Entity\Enums\Subjects\StatusEnum;
 use App\Repository\SubjectRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SubjectRepository::class)]
 class Subject extends AbstractEntity
 {
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $title = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255, enumType: StatusEnum::class)]
+    private StatusEnum $status = StatusEnum::ACTIVE;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     private ?User $user = null;
@@ -23,6 +28,17 @@ class Subject extends AbstractEntity
     public function setTitle(string $title): self
     {
         $this->title = $title;
+        return $this;
+    }
+
+    public function getStatus(): StatusEnum
+    {
+        return $this->status;
+    }
+
+    public function setStatus(StatusEnum $status): self
+    {
+        $this->status = $status;
         return $this;
     }
 

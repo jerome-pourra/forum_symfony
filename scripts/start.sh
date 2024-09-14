@@ -1,2 +1,3 @@
 #!/bin/bash
-symfony server:start
+
+php -S localhost:8000 -t public
