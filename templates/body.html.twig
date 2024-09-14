@@ -1,7 +1,10 @@
 {% extends "base.html.twig" %}
 
+{% block suffixTitle %}Home
+{% endblock %}
+
 {% block bodyContent %}
-    <div class="container">
-        {% block mainContent %}{% endblock %}
-    </div>
+	<main>
+		{% block mainContent %}{% endblock %}
+	</main>
 {% endblock %}

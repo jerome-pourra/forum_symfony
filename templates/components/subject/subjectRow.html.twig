@@ -1,4 +1,4 @@
-<a href="#" class="list-group-item list-group-item-action">
+<li class="list-group-item">
 
 	<div class="row">
 
@@ -8,12 +8,18 @@
 				<span class="material-symbols-outlined text-{{ icon.color }} me-3">
 					{{ icon.icon }}
 				</span>
-				{{ this.subject.title }}
+				<a href="#" class="link-primary text-decoration-none">
+					{{ this.subject.title }}
+				</a>
 			</div>
 		</div>
 
 		<div class="col-2">
-			<small class="badge text-bg-primary">{{ this.subject.user.name }}</small>
+			<small>
+				<a href="#" class="link-primary text-decoration-none">
+					{{ this.subject.user.name }}
+				</a>
+			</small>
 		</div>
 
 		<div class="col-4 text-end">
@@ -22,4 +28,4 @@
 
 	</div>
 
-</a>
+</li>

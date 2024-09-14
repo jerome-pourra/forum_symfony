@@ -1,11 +1,23 @@
 {% extends "body.html.twig" %}
 
-{% block suffixTitle %}Subjects list{% endblock %}
+{% block suffixTitle %}Subjects list
+{% endblock %}
 
 {% block mainContent %}
+
+	<nav class="row mb-3">
+		<div class="col-8">
+			<twig:Utils:Filters/>
+		</div>
+		<div class="col-4">
+			<twig:Utils:Pagination/>
+		</div>
+	</nav>
+
 	<ul class="list-group">
 		{% for subject in subjects %}
-            <twig:SubjectRow subject="{{ subject }}"></twig:SubjectRow>
+			<twig:Subject:SubjectRow subject="{{ subject }}"/>
 		{% endfor %}
 	</ul>
+
 {% endblock %}

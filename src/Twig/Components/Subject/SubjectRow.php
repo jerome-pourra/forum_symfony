@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Twig\Components;
+namespace App\Twig\Components\Subject;
 use App\Entity\Enums\Subjects\StatusEnum;
 use App\Entity\Subject;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent(template: 'components/subject/subject_row.html.twig')]
+#[AsTwigComponent]
 class SubjectRow
 {
 
