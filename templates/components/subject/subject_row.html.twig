@@ -1,0 +1,25 @@
+<a href="#" class="list-group-item list-group-item-action">
+
+	<div class="row">
+
+		<div class="col-6">
+			<div class="d-flex align-items-center">
+				{% set icon = this.getIconFromStatus(subject.status) %}
+				<span class="material-symbols-outlined text-{{ icon.color }} me-3">
+					{{ icon.icon }}
+				</span>
+				{{ this.subject.title }}
+			</div>
+		</div>
+
+		<div class="col-2">
+			<small class="badge text-bg-primary">{{ this.subject.user.name }}</small>
+		</div>
+
+		<div class="col-4 text-end">
+			<small>{{ this.subject.createdAt|date }}</small>
+		</div>
+
+	</div>
+
+</a>

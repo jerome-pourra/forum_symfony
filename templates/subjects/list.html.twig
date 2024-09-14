@@ -3,30 +3,7 @@
 {% block mainContent %}
 	<ul class="list-group">
 		{% for subject in subjects %}
-			<a href="#" class="list-group-item list-group-item-action">
-
-				<div class="row">
-
-					<div class="col-6">
-						<div class="d-flex align-items-center">
-							<span class="material-symbols-outlined me-2 text-success">
-								check_circle
-							</span>
-							{{ subject.title }}
-						</div>
-					</div>
-
-					<div class="col-2">
-						<small class="badge text-bg-primary">{{ subject.user.name }}</small>
-					</div>
-
-					<div class="col-4 text-end">
-						<small>{{ subject.createdAt|date }}</small>
-					</div>
-
-				</div>
-
-			</a>
+            <twig:SubjectRow subject="{{ subject }}"></twig:SubjectRow>
 		{% endfor %}
 	</ul>
 {% endblock %}
