@@ -36,6 +36,16 @@ class RequestContext
 
     }
 
+    public function getQueryParams(): array
+    {
+        return $this->request->query->all();
+    }
+
+    public function mergeQueryParams(array $params): array
+    {
+        return array_merge($this->request->query->all(), $params);
+    }
+
     public function getFilters(): array
     {
         return $this->filters;
