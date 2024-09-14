@@ -5,12 +5,8 @@
 		<div class="col-6">
 			<div class="d-flex align-items-center">
 				{% set icon = this.getIconFromStatus(subject.status) %}
-				<span class="material-symbols-outlined text-{{ icon.color }} me-3">
-					{{ icon.icon }}
-				</span>
-				<a href="#" class="link-primary text-decoration-none">
-					{{ this.subject.title }}
-				</a>
+				<span class="material-symbols-outlined text-{{ icon.color }} me-3">{{ icon.icon }}</span>
+				<a href="#" class="link-primary text-decoration-none">{{ this.subject.title }}</a>
 			</div>
 		</div>
 

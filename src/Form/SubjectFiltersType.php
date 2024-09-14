@@ -2,9 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Enums\Subjects\StatusEnum;
+use App\Form\Choices\SubjectChoicesStatusEnum;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,10 +15,15 @@ class SubjectFiltersType extends AbstractType
     {
         $builder
             ->add('status', EnumType::class, [
-                'class' => StatusEnum::class,
-                'required' => false,
-                'placeholder' => 'All',
+                'class' => SubjectChoicesStatusEnum::class,
                 'label' => false
+            ])
+            ->add('search', TextType::class, [
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Search fied do not work yet'
+                ]
             ]);
     }
 

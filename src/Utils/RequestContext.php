@@ -19,9 +19,8 @@ class RequestContext
     private ?int $offset = null;
     private ?string $orderBy = null;
 
-    public function __construct(Request $request, array $filtersKeys = [])
+    public function __construct(Request $request)
     {
-
         $this->request = $request;
 
         $limit = $request->query->getInt('limit', self::DEFAULT_LIMIT);
@@ -31,9 +30,6 @@ class RequestContext
         $this->offset = max($offset, self::MIN_OFFSET);
 
         $this->orderBy = $request->query->get('orderBy', null);
-
-        $this->buildFilters($request, $filtersKeys);
-
     }
 
     public function getQueryParams(): array
@@ -64,16 +60,5 @@ class RequestContext
     public function getOrderBy(): ?string
     {
         return $this->orderBy;
-    }
-
-    private function buildFilters(Request $request, array $keys): void
-    {
-        $this->filters = [];
-        foreach ($keys as $key) {
-            $value = $request->query->get($key);
-            if ($value) {
-                $this->filters[$key] = $value;
-            }
-        }
     }
 }

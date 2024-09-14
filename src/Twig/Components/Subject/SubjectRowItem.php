@@ -6,7 +6,7 @@ use App\Entity\Subject;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
 #[AsTwigComponent]
-class SubjectRow
+class SubjectRowItem
 {
 
     public Subject $subject;

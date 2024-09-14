@@ -7,25 +7,35 @@
 {% block mainContent %}
 
 	<nav class="row mb-3">
-		<div class="col-8">
+		<div class="col">
 			<button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false">
 				<i class="material-symbols-outlined" style="font-size: 0.875rem;">filter_alt</i>
 			</button>
 			<div class="collapse" id="collapseFilters">
-				<div class="border rounded p-3 mt-3">
+				<div class="border rounded p-2 mt-3">
 					<twig:Utils:FormFilters form="{{ formFilters }}"/>
 				</div>
 			</div>
 		</div>
-		<div class="col-4">
+		<div class="col">
 			<twig:Utils:Pagination totalcount="{{ count }}" context="{{ context }}"/>
 		</div>
 	</nav>
 
-	<ul class="list-group">
-		{% for entity in items %}
-			<twig:Subject:SubjectRow subject="{{ entity }}"/>
-		{% endfor %}
-	</ul>
+	{% if items|length > 0 %}
+		<ul class="list-group">
+			{% for entity in items %}
+				<twig:Subject:SubjectRowItem subject="{{ entity }}"/>
+			{% endfor %}
+		</ul>
+		<div class="text-end">
+            <span class="badge text-bg-dark">{{ count ~ ' results' }}</span>
+		</div>
+	{% else %}
+		<div class="alert alert-info" role="alert">
+			No subjects found.
+		</div>
+	{% endif %}
+
 
 {% endblock %}
