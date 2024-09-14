@@ -1,0 +1,9 @@
+body {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    padding: 5px;
+    background-color: #eeeeee;
+}
