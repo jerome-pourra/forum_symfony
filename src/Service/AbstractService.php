@@ -44,6 +44,11 @@ abstract class AbstractService
         return $this->getList($request, ['id' => $id]);
     }
 
+    public function getOne(int $id): object
+    {
+        return $this->fetchOne(['id' => $id]);
+    }
+
     private function fetchList(RequestContext $context, array $criterias): array
     {
         $items = $this->em->getRepository($this->getRepository())->findBy($criterias, $context->getOrderBy(), $context->getLimit(), $context->getOffset());
@@ -53,5 +58,10 @@ abstract class AbstractService
             'count' => $count,
             'context' => $context,
         ];
+    }
+
+    private function fetchOne(array $criterias): object
+    {
+        return $this->em->getRepository($this->getRepository())->findOneBy($criterias);
     }
 }

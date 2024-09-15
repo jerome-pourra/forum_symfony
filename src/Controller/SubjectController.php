@@ -4,25 +4,23 @@ namespace App\Controller;
 
 use App\Entity\Subject;
 use App\Form\SubjectFiltersType;
+use App\Service\BreadcrumbService;
 use App\Service\MessageService;
 use App\Service\SubjectService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/subject')]
-class SubjectController extends AbstractController
+class SubjectController extends AbstractCustomController
 {
 
-    private SubjectService $subjectService;
-    private MessageService $messageService;
-
-    public function __construct(SubjectService $subjectService, MessageService $messageService)
-    {
-        $this->subjectService = $subjectService;
-        $this->messageService = $messageService;
+    public function __construct(
+        BreadcrumbService $breadcrumbService,
+        private SubjectService $subjectService,
+        private MessageService $messageService
+    ) {
+        parent::__construct($breadcrumbService);
     }
 
     #[Route('', name: 'app_subject_list')]

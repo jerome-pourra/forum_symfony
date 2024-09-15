@@ -5,6 +5,7 @@
 
 {% block bodyContent %}
 	<main>
+		{% include 'components/utils/Breadcrumb.html.twig' with { 'breadcrumbs': breadcrumbs } %}
 		{% block mainContent %}{% endblock %}
 	</main>
 {% endblock %}

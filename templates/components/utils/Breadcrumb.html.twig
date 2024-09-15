@@ -1,0 +1,25 @@
+<nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '&rsaquo;';">
+	{% if breadcrumbs|length > 0 %}
+		<ol class="breadcrumb">
+			{% for breadcrumb in breadcrumbs %}
+				<li class="breadcrumb-item {% if loop.last %}active{% endif %}" {% if loop.last %} aria-current="page" {% endif %}>
+					{% if not loop.last %}
+						<a href="{{ breadcrumb.url }}">
+							{% if breadcrumb.html is defined %}
+								{{ breadcrumb.html|raw }}
+							{% else %}
+								{{ breadcrumb.label }}
+							{% endif %}
+						</a>
+					{% else %}
+						{% if breadcrumb.html is defined %}
+							{{ breadcrumb.html }}
+						{% else %}
+							{{ breadcrumb.label }}
+						{% endif %}
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ol>
+	{% endif %}
+</nav>
