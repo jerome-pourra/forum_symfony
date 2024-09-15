@@ -47,9 +47,6 @@ class SubjectController extends AbstractCustomController
             throw $this->createNotFoundException();
         }
 
-        // $form = $this->createForm(SubjectFiltersType::class);
-        // $form->handleRequest($request);
-
         $result = $this->messageService->getListByKey($request, 'subject', $subject);
         return $this->render('subjects/item.html.twig', [
             'subject' => $subject,
