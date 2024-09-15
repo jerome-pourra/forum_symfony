@@ -12,6 +12,7 @@ class IconExtension extends AbstractExtension
     {
         return [
             new TwigFunction('subject_status_icon', [$this, 'subjectStatusIcon']),
+            new TwigFunction('theme_icon', [$this, 'themeIcon']),
         ];
     }
 
@@ -36,6 +37,19 @@ class IconExtension extends AbstractExtension
             ],
         };
         return $icon;
+    }
+
+    public static function themeIcon(string $theme): array
+    {
+        $light = [
+            'class' => 'bi-sun',
+            'color' => 'light',
+        ];
+        $dark = [
+            'class' => 'bi-moon',
+            'color' => 'dark',
+        ];
+        return $theme === 'light' ? $dark : $light;
     }
 
 }

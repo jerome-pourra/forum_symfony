@@ -23,7 +23,9 @@ abstract class AbstractCustomController extends AbstractController
 
     protected function render(string $view, array $parameters = [], Response|null $response = null): Response
     {
-        $parameters['theme'] = $this->session->get('theme', ThemeController::DEFAULT_THEME);
+        $parameters['session'] = [
+            'theme' => $this->session->get('theme', ThemeController::DEFAULT_THEME),
+        ];
         $parameters['breadcrumbs'] = $this->breadcrumbService->generateBreadcrumb();
         return parent::render($view, $parameters, $response);
     }

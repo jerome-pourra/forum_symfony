@@ -1,0 +1,9 @@
+{% set icon = theme_icon(theme) %}
+
+{% block javascript %}
+    <script src="{{ asset('assets/js/themeToogler.js') }}"></script>
+{% endblock %}
+
+<button id="themeToogler" class="btn btn-sm btn-outline-{{ icon.color }}" type="button">
+    <i class="bi {{ icon.class }}"></i>
+</button>
