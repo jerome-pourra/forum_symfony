@@ -1,8 +1,8 @@
 <ul class="pagination pagination-sm justify-content-end mb-0">
 	{% for page in this.getPages() %}
 		<li class="page-item {{ page.active ? 'active' : '' }}">
-            {% set queryPrms = this.context.mergeQueryParams({'offset': page.offset}) %}
-			<a class="page-link" href="{{ path('app_subject_list', queryPrms) }}">{{ page.num }}</a>
+			{% set queryPrms = this.context.mergeQueryParams({'offset': page.offset}) %}
+			<a class="page-link" href="{{ path(this.context.getRoute(), this.context.getRouteAttr()|merge(queryPrms)) }}">{{ page.num }}</a>
 		</li>
 	{% endfor %}
 </ul>

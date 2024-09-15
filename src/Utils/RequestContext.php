@@ -2,10 +2,10 @@
 
 namespace App\Utils;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class RequestContext
 {
-
     private const MIN_LIMIT = 1;
     private const MAX_LIMIT = 50;
     private const DEFAULT_LIMIT = 10;
@@ -40,6 +40,16 @@ class RequestContext
     public function mergeQueryParams(array $params): array
     {
         return array_merge($this->request->query->all(), $params);
+    }
+
+    public function getRoute(): ?string
+    {
+        return $this->request->attributes->get('_route', null);
+    }
+
+    public function getRouteAttr(): array
+    {
+        return $this->request->attributes->get('_route_params', []);
     }
 
     public function getFilters(): array
