@@ -1,0 +1,29 @@
+{% extends "body.html.twig" %}
+
+{% block suffixTitle %}
+	Subjects list
+{% endblock %}
+
+{% block mainContent %}
+
+	<nav class="mb-3">
+		<twig:Utils:Pagination totalcount="{{ count }}" context="{{ context }}"/>
+	</nav>
+
+	{% if messages|length > 0 %}
+		<ul class="list-group">
+			{% for message in messages %}
+                {% include 'components/message/MessageRowItem.html.twig' with { 'message': message } %}
+			{% endfor %}
+		</ul>
+		<div class="text-end">
+            <span class="badge text-bg-dark">{{ count ~ ' results' }}</span>
+		</div>
+	{% else %}
+		<div class="alert alert-info" role="alert">
+			No messages found.
+		</div>
+	{% endif %}
+
+
+{% endblock %}
