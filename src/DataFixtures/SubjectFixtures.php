@@ -13,7 +13,7 @@ class SubjectFixtures extends AbstractFixtures implements DependentFixtureInterf
 {
 
     private const JSON_FILENAME = 'subject.json';
-    protected int $dummyCount = 50;
+    protected int $dummyCount = 500;
 
     public function loadDummy(ObjectManager $manager): void
     {

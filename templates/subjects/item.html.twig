@@ -6,23 +6,60 @@
 
 {% block mainContent %}
 
-	<nav class="mb-3">
-		<twig:Utils:Pagination totalcount="{{ count }}" context="{{ context }}"/>
+	<nav class="row mb-3">
+		<div class="col">
+			<button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false">
+				<i class="material-symbols-outlined" style="font-size: 0.875rem;">filter_alt</i>
+			</button>
+			<div class="collapse" id="collapseFilters">
+				<div class="border rounded p-2 mt-3">
+					{% include 'components/message/MessageFormFilters.html.twig' with {'form': formFilters} %}
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<twig:Utils:Pagination totalcount="{{ count }}" context="{{ context }}"/>
+		</div>
 	</nav>
 
 	{% if messages|length > 0 %}
-		<ul class="list-group">
-			{% for message in messages %}
-                {% include 'components/message/MessageRowItem.html.twig' with { 'message': message } %}
-			{% endfor %}
-		</ul>
+
+		{% for message in messages %}
+			<div class="card {% if not loop.last %}mb-3{% endif %}">
+				<div class="card-header d-flex justify-content-between align-items-center">
+					<a href="#" class="link-primary text-decoration-none d-flex align-items-center">
+						<span class="material-symbols-outlined me-1">
+							account_circle
+						</span>
+						{{ message.user.name }}
+					</a>
+					<small>
+						{{ message.createdAt|date }}
+					</small>
+				</div>
+				<div class="card-body">
+					<div>
+						{{ message.content }}
+					</div>
+				</div>
+				{% if message.user.signature is not null %}
+					<div class="card-footer">
+						{{ message.user.signature }}
+					</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+
 		<div class="text-end">
-            <span class="badge text-bg-dark">{{ count ~ ' results' }}</span>
+			<span class="badge text-bg-dark">{{ count ~ ' results' }}</span>
 		</div>
+
 	{% else %}
+
 		<div class="alert alert-info" role="alert">
 			No messages found.
 		</div>
+
 	{% endif %}
 
 

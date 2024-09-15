@@ -13,7 +13,7 @@
 			</button>
 			<div class="collapse" id="collapseFilters">
 				<div class="border rounded p-2 mt-3">
-					<twig:Utils:FormFilters form="{{ formFilters }}"/>
+					{% include 'components/subject/SubjectFormFilters.html.twig' with {'form': formFilters} %}
 				</div>
 			</div>
 		</div>
@@ -29,7 +29,7 @@
 			{% endfor %}
 		</ul>
 		<div class="text-end">
-            <span class="badge text-bg-dark">{{ count ~ ' results' }}</span>
+			<span class="badge text-bg-dark">{{ count ~ ' results' }}</span>
 		</div>
 	{% else %}
 		<div class="alert alert-info" role="alert">

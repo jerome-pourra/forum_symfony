@@ -1,0 +1,26 @@
+{{ form_start(form) }}
+
+<div class="input-group input-group-sm mb-1">
+	{{ form_widget(form.search, {'attr': {'class': 'form-control  form-control-sm'}}) }}
+</div>
+
+<div class="row mb-1 g-1">
+	<div class="col">
+		<div class="input-group input-group-sm">
+			{{ form_label(form.status, 'Status', {'label_attr': {'class': 'input-group-text'}}) }}
+			{{ form_widget(form.status, {'attr': {'class': 'form-control  form-control-sm'}}) }}
+		</div>
+	</div>
+	<div class="col">
+		<div class="input-group input-group-sm">
+			{{ form_label(form.limit, 'Limit', {'label_attr': {'class': 'input-group-text'}}) }}
+			{{ form_widget(form.limit, {'attr': {'class': 'form-control  form-control-sm'}}) }}
+		</div>
+	</div>
+</div>
+
+<div class="text-end">
+	<button type="submit" class="btn btn-sm btn-primary">Filter</button>
+</div>
+
+{{ form_end(form) }}

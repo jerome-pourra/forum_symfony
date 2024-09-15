@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Subject;
+use App\Form\MessageFiltersType;
 use App\Form\SubjectFiltersType;
 use App\Service\BreadcrumbService;
 use App\Service\MessageService;
@@ -47,12 +48,16 @@ class SubjectController extends AbstractCustomController
             throw $this->createNotFoundException();
         }
 
+        $form = $this->createForm(MessageFiltersType::class);
+        $form->handleRequest($request);
+
         $result = $this->messageService->getListByKey($request, 'subject', $subject);
         return $this->render('subjects/item.html.twig', [
             'subject' => $subject,
             'messages' => $result['items'],
             'count' => $result['count'],
             'context' => $result['context'],
+            'formFilters' => $form->createView(),
         ]);
 
     }

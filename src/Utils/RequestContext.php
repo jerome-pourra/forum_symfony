@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Utils;
+use App\Form\Choices\LimitChoiceEnum;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class RequestContext
 {
-    private const MIN_LIMIT = 1;
-    private const MAX_LIMIT = 50;
-    private const DEFAULT_LIMIT = 10;
-
     private const MIN_OFFSET = 0;
     private const DEFAULT_OFFSET = 0;
 
@@ -24,8 +21,8 @@ class RequestContext
     ) {
         $this->request = $request;
 
-        $limit = $request->query->getInt('limit', self::DEFAULT_LIMIT);
-        $this->limit = min(max($limit, self::MIN_LIMIT), self::MAX_LIMIT);
+        $limit = $request->query->getInt('limit', LimitChoiceEnum::LIMIT_10->value);
+        $this->limit = min(max($limit, LimitChoiceEnum::LIMIT_1->value), LimitChoiceEnum::LIMIT_100->value);
 
         $offset = $request->query->getInt('offset', self::DEFAULT_OFFSET);
         $this->offset = max($offset, self::MIN_OFFSET);
@@ -64,7 +61,7 @@ class RequestContext
         // Symfony ne semble pas générer la route correment étant donné que le parametre id est déjà présent dans la route
         // Et que les parametres de query string sont mergé avec les attributs de la route
         // On passe par http_build_query pour plus de clarté et séparer les parametres de la route et les parametres de query string
-        
+
         if (!empty($queryParams)) {
             $url = $url . '?' . http_build_query($queryParams);
         }
