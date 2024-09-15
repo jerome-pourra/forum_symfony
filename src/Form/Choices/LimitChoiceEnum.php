@@ -6,8 +6,6 @@ enum LimitChoiceEnum: int
 {
     use ChoiceEnumTrait;
 
-    case LIMIT_1 = 1;
-    case LIMIT_5 = 5;
     case LIMIT_10 = 10;
     case LIMIT_15 = 15;
     case LIMIT_20 = 20;

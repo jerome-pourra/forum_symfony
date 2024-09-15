@@ -23,12 +23,12 @@ class BreadcrumbService
 
         switch ($route) {
             case 'app_subject_list':
-                $breadcrumbs[] = ['label' => 'Home', 'html' => '<span class="material-symbols-outlined">home</span>', 'url' => $this->router->generate('app_home_index')];
+                $breadcrumbs[] = ['label' => 'Home', 'html' => '<i class="bi bi-house"></i>', 'url' => $this->router->generate('app_home_index')];
                 $breadcrumbs[] = ['label' => 'Subjects', 'url' => $this->router->generate('app_subject_list')];
                 break;
             case 'app_subject_item':
                 $subject = $this->subjectService->getOne($routeParams['id']);
-                $breadcrumbs[] = ['label' => 'Home', 'html' => '<span class="material-symbols-outlined">home</span>', 'url' => $this->router->generate('app_home_index')];
+                $breadcrumbs[] = ['label' => 'Home', 'html' => '<i class="bi bi-house"></i>', 'url' => $this->router->generate('app_home_index')];
                 $breadcrumbs[] = ['label' => 'Subjects', 'url' => $this->router->generate('app_subject_list')];
                 $breadcrumbs[] = ['label' => $subject->getTitle(), 'url' => $this->router->generate('app_subject_item', $routeParams)];
                 break;

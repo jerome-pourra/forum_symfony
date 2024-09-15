@@ -9,7 +9,7 @@
 	<nav class="row mb-3">
 		<div class="col">
 			<button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false">
-				<i class="material-symbols-outlined" style="font-size: 0.875rem;">filter_alt</i>
+				<i class="bi bi-funnel"></i>
 			</button>
 			<div class="collapse" id="collapseFilters">
 				<div class="border rounded p-2 mt-3">
@@ -23,18 +23,44 @@
 	</nav>
 
 	{% if subjects|length > 0 %}
-		<ul class="list-group">
-			{% for subject in subjects %}
-				<twig:Subject:SubjectRowItem subject="{{ subject.entity }}" count="{{ subject.messagesCount }}"/>
-			{% endfor %}
-		</ul>
-		<div class="text-end">
-			<span class="badge text-bg-dark">{{ count ~ ' results' }}</span>
+
+		<div class="border rounded p-3">
+			<table class="table table-sm mb-0">
+				<thead>
+					<tr>
+						<th scope="col">Title</th>
+						<th scope="col">Count</th>
+						<th scope="col">User</th>
+						<th scope="col">Created at</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for subject in subjects %}
+						{% set icon = subject_status_icon(subject.entity) %}
+						<tr>
+							<td>
+								<i class="{{ icon.class }} text-{{ icon.color }} me-1"></i>
+								<a href="{{ path('app_subject_item', {'id': subject.entity.id}) }}" class="text-truncate text-decoration-none">{{ subject.entity.title }}</a>
+							</td>
+							<td>{{ subject.messagesCount }}</td>
+							<td>
+								<a href="#" class="text-decoration-none">
+									{{ subject.entity.user.name }}
+								</a>
+							</td>
+							<td>{{ subject.entity.createdAt|date }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
+
+		<div class="text-end mt-1">
+			<twig:Utils:ResultCount count="{{ count }}"/>
+		</div>
+
 	{% else %}
-		<div class="alert alert-info" role="alert">
-			No subjects found.
-		</div>
+		<twig:Utils:NoResultsFound what="subjects"/>
 	{% endif %}
 
 

@@ -9,7 +9,7 @@
 	<nav class="row mb-3">
 		<div class="col">
 			<button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false">
-				<i class="material-symbols-outlined" style="font-size: 0.875rem;">filter_alt</i>
+                <i class="bi bi-funnel"></i>
 			</button>
 			<div class="collapse" id="collapseFilters">
 				<div class="border rounded p-2 mt-3">
@@ -28,9 +28,7 @@
 			<div class="card {% if not loop.last %}mb-3{% endif %}">
 				<div class="card-header d-flex justify-content-between align-items-center">
 					<a href="#" class="link-primary text-decoration-none d-flex align-items-center">
-						<span class="material-symbols-outlined me-1">
-							account_circle
-						</span>
+                        <i class="bi bi-person-circle me-2 fs-2"></i>
 						{{ message.user.name }}
 					</a>
 					<small>
@@ -50,16 +48,12 @@
 			</div>
 		{% endfor %}
 
-		<div class="text-end">
-			<span class="badge text-bg-dark">{{ count ~ ' results' }}</span>
+		<div class="text-end mt-1">
+            <twig:Utils:ResultCount count="{{ count }}" />
 		</div>
 
 	{% else %}
-
-		<div class="alert alert-info" role="alert">
-			No messages found.
-		</div>
-
+		<twig:Utils:NoResultsFound what="messages" />
 	{% endif %}
 
 

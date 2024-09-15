@@ -7,6 +7,10 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class RequestContext
 {
+
+    private const MIN_LIMIT = LimitChoiceEnum::LIMIT_10->value;
+    private const MAX_LIMIT = LimitChoiceEnum::LIMIT_100->value;
+
     private const MIN_OFFSET = 0;
     private const DEFAULT_OFFSET = 0;
 
@@ -22,8 +26,8 @@ class RequestContext
 
         $this->request = $request;
 
-        $limit = $request->query->getInt('limit', LimitChoiceEnum::LIMIT_10->value);
-        $this->limit = min(max($limit, LimitChoiceEnum::LIMIT_1->value), LimitChoiceEnum::LIMIT_100->value);
+        $limit = $request->query->getInt('limit', self::MIN_LIMIT);
+        $this->limit = min(max($limit, self::MIN_LIMIT), self::MAX_LIMIT);
 
         $offset = $request->query->getInt('offset', self::DEFAULT_OFFSET);
         $this->offset = max($offset, self::MIN_OFFSET);

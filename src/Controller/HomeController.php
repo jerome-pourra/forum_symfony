@@ -25,9 +25,9 @@ class HomeController extends AbstractCustomController
     {
         return $this->render('home/index.html.twig', [
             'links' => [
-                ['label' => 'Subjects', 'url' => $this->generateUrl('app_subject_list')],
-                ['label' => 'Github', 'url' => 'https://github.com/jerome-pourra/forum_symfony', 'target' => '_blank'],
-                ['label' => 'Readme', 'url' => 'https://shattereddisk.github.io/rickroll/rickroll.mp4', 'target' => '_blank', 'style' => "danger"]
+                ['label' => 'Subjects', 'url' => $this->generateUrl('app_subject_list'), 'style' => 'primary'],
+                ['label' => 'Github', 'url' => 'https://github.com/jerome-pourra/forum_symfony', 'target' => '_blank', 'style' => 'light'],
+                ['label' => 'Readme', 'url' => 'https://shattereddisk.github.io/rickroll/rickroll.mp4', 'target' => '_blank', 'style' => 'danger']
             ],
         ]);
     }

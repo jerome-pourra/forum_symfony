@@ -19,6 +19,6 @@ class MessageService extends AbstractService
 
     public function getCountBySubject(Subject $subject): int
     {
-        return $this->em->getRepository($this->getRepository())->count(['subject' => $subject]);
+        return $this->fetchCount(['subject' => $subject]);
     }
 }

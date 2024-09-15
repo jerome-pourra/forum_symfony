@@ -12,9 +12,10 @@
 
 	<div class="d-flex justify-content-center align-items-center vh-100">
 		<div class="text-center">
-			<h1 class="mb-5">Welcome home</h1>
+			<h1 class="mb-3">Welcome home</h1>
 			{% for link in links %}
-				<button class="btn btn-{{ link.style | default('primary') }} mb-2" onclick="redirectTo('{{ link.url }}', '{{ link.target | default('_self') }}')">
+                {# On click for hidden Rickroll url (^_^) #}
+				<button class="btn btn-{{ link.style | default('primary') }}" onclick="redirectTo('{{ link.url }}', '{{ link.target | default('_self') }}')">
 					{{ link.label }}
 				</button>
 			{% endfor %}
