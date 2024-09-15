@@ -12,7 +12,7 @@ class MessageFixtures extends AbstractFixtures implements DependentFixtureInterf
 {
 
     private const JSON_FILENAME = 'messages.json';
-    protected int $dummyCount = 1000;
+    protected int $dummyCount = 2500;
 
     public function loadDummy(ObjectManager $manager): void
     {
