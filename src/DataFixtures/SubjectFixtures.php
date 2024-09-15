@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Utils\EnumTools;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class SubjectFixtures extends AbstractFixtures implements DependentFixtureInterface
 {
@@ -17,13 +18,16 @@ class SubjectFixtures extends AbstractFixtures implements DependentFixtureInterf
 
     public function loadDummy(ObjectManager $manager): void
     {
-        
+
         for ($i = 0; $i < $this->dummyCount; $i++) {
 
+            $userRef = $this->getRandomReference(User::class);
+
             $entity = new Subject();
-            $entity->setTitle("Ceci est le titre du sujet $i");
+            $entity->setTitle($this->faker->sentence());
             $entity->setStatus(EnumTools::getRandomEnumValue(StatusEnum::class));
-            $entity->setUser($this->getRandomReference(User::class));
+            $entity->setUser($userRef);
+            $entity->setCreatedAt($this->faker->dateTimeBetween($userRef->getCreatedAt(), 'now'));
 
             $manager->persist($entity);
             $this->addReference(Subject::class . "_" . $i, $entity);

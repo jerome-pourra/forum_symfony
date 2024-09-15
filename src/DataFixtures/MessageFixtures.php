@@ -12,18 +12,24 @@ class MessageFixtures extends AbstractFixtures implements DependentFixtureInterf
 {
 
     private const JSON_FILENAME = 'messages.json';
-    protected int $dummyCount = 5000;
+    protected int $dummyCount = 1000;
 
     public function loadDummy(ObjectManager $manager): void
     {
 
         for ($i = 0; $i < $this->dummyCount; $i++) {
+
+            $userRef = $this->getRandomReference(User::class);
+            $subjectRef = $this->getRandomReference(Subject::class);
+
             $entity = new Message();
-            $entity->setContent("Ceci est le contenu du message $i");
-            $entity->setUser($this->getRandomReference(User::class));
-            $entity->setSubject($this->getRandomReference(Subject::class));
+            $entity->setContent($this->faker->sentence($this->faker->numberBetween(10, 100), true));
+            $entity->setUser($userRef);
+            $entity->setSubject($subjectRef);
+            $entity->setCreatedAt($this->faker->dateTimeBetween($subjectRef->getCreatedAt(), 'now'));
 
             $manager->persist($entity);
+
         }
 
         $manager->flush();

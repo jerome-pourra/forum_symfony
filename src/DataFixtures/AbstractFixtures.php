@@ -4,6 +4,8 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
+use Faker\Generator;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 abstract class AbstractFixtures extends Fixture
@@ -12,10 +14,12 @@ abstract class AbstractFixtures extends Fixture
     private ObjectManager $manager;
     private KernelInterface $kernel;
     protected int $dummyCount = 50;
+    protected Generator $faker;
 
     public function __construct(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
+        $this->faker = Factory::create();
     }
 
     public function loadDummy(ObjectManager $manager): void

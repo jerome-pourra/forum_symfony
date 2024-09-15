@@ -18,8 +18,15 @@ class UserFixtures extends AbstractFixtures
         for ($i = 0; $i < $this->dummyCount; $i++) {
 
             $entity = new User();
-            $entity->setName("User $i");
+            $entity->setName($this->faker->firstName($this->faker->randomElement));
             $entity->setRole("ROLE_USER");
+
+            // 25% chance of setting a signature
+            if ($this->faker->boolean(25)) {
+                $entity->setSignature($this->faker->sentence());
+            }
+
+            $entity->setCreatedAt($this->faker->dateTimeBetween('-1 years', 'now'));
 
             $manager->persist($entity);
             $this->addReference(User::class . "_" . $i, $entity);
