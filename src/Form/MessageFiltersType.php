@@ -13,13 +13,6 @@ class MessageFiltersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('sort', ChoiceType::class, [
-                // 'choices' => [
-                //     'Date de création (croissant)' => 'createdAt',
-                //     'Date de création (décroissant)' => 'createdAt_desc',
-                // ],
-                'label' => false,
-            ])
             ->add('limit', ChoiceType::class, [
                 'choices' => LimitChoiceEnum::getChoicesWithValues(),
                 'label' => false,

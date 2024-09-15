@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Form\Choices\ChoiceSortOperatorEnum;
 use App\Form\Choices\LimitChoiceEnum;
-use App\Form\Choices\SubjectChoicesStatusEnum;
+use App\Form\Choices\SubjectChoiceSortEnum;
+use App\Form\Choices\SubjectChoiceStatusEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,11 +25,19 @@ class SubjectFiltersType extends AbstractType
                 ]
             ])
             ->add('status', ChoiceType::class, [
-                'choices' => SubjectChoicesStatusEnum::getChoices(),
+                'choices' => SubjectChoiceStatusEnum::getChoices(),
                 'label' => false
             ])
             ->add('limit', ChoiceType::class, [
                 'choices' => LimitChoiceEnum::getChoicesWithValues(),
+                'label' => false,
+            ])
+            ->add('orderBy', ChoiceType::class, [
+                'choices' => SubjectChoiceSortEnum::getChoices(),
+                'label' => false,
+            ])
+            ->add('orderOperator', ChoiceType::class, [
+                'choices' => ChoiceSortOperatorEnum::getChoices(),
                 'label' => false,
             ]);
     }

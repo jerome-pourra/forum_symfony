@@ -13,12 +13,13 @@ class RequestContext
     private array $filters = [];
     private ?int $limit = null;
     private ?int $offset = null;
-    private ?string $orderBy = null;
+    private ?array $orderBy = null;
 
     public function __construct(
         private Request $request,
         private UrlGeneratorInterface $router
     ) {
+
         $this->request = $request;
 
         $limit = $request->query->getInt('limit', LimitChoiceEnum::LIMIT_10->value);
@@ -27,7 +28,13 @@ class RequestContext
         $offset = $request->query->getInt('offset', self::DEFAULT_OFFSET);
         $this->offset = max($offset, self::MIN_OFFSET);
 
-        $this->orderBy = $request->query->get('orderBy', null);
+        $orderBy = $request->query->get('orderBy', null);
+        $orderOperator = $request->query->get('orderOperator', null);
+
+        if ($orderBy && $orderOperator) {
+            $this->orderBy = [$orderBy => $orderOperator];
+        }
+        
     }
 
     public function getQueryParams(): array
@@ -85,7 +92,7 @@ class RequestContext
         return $this->offset;
     }
 
-    public function getOrderBy(): ?string
+    public function getOrderBy(): ?array
     {
         return $this->orderBy;
     }

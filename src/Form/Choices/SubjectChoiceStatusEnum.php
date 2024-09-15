@@ -3,7 +3,7 @@
 namespace App\Form\Choices;
 use App\Entity\Enums\Subjects\StatusEnum;
 
-enum SubjectChoicesStatusEnum: string
+enum SubjectChoiceStatusEnum: string
 {
     use ChoiceEnumTrait;
 
