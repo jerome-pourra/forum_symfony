@@ -52,7 +52,7 @@ class SubjectController extends AbstractController
         // $form = $this->createForm(SubjectFiltersType::class);
         // $form->handleRequest($request);
 
-        $result = $this->messageService->getListFromSubject($request, $subject);
+        $result = $this->messageService->getListByKey($request, 'subject', $subject);
         return $this->render('subjects/item.html.twig', [
             'subject' => $subject,
             'messages' => $result['items'],
