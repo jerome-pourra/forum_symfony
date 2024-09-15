@@ -2,25 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Subject;
-use App\Form\SubjectFiltersType;
-use App\Service\BreadcrumbService;
-use App\Service\MessageService;
-use App\Service\SubjectService;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/')]
 class HomeController extends AbstractCustomController
 {
-    public function __construct(
-        BreadcrumbService $breadcrumbService,
-    ) {
-        parent::__construct($breadcrumbService);
-    }
-
-    #[Route('', name: 'app_home_index')]
+    #[Route('', name: 'app_home_index', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [

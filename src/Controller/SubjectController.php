@@ -17,14 +17,12 @@ class SubjectController extends AbstractCustomController
 {
 
     public function __construct(
-        BreadcrumbService $breadcrumbService,
         private SubjectService $subjectService,
         private MessageService $messageService
     ) {
-        parent::__construct($breadcrumbService);
     }
 
-    #[Route('', name: 'app_subject_list')]
+    #[Route('', name: 'app_subject_list', methods: ['GET'])]
     public function list(Request $request): Response
     {
 
@@ -49,7 +47,7 @@ class SubjectController extends AbstractCustomController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_subject_item')]
+    #[Route('/{id}', name: 'app_subject_item', methods: ['GET'])]
     public function item(?Subject $subject, Request $request): Response
     {
 
