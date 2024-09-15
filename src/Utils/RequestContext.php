@@ -13,14 +13,15 @@ class RequestContext
     private const MIN_OFFSET = 0;
     private const DEFAULT_OFFSET = 0;
 
-    private Request $request;
     private array $filters = [];
     private ?int $limit = null;
     private ?int $offset = null;
     private ?string $orderBy = null;
 
-    public function __construct(Request $request)
-    {
+    public function __construct(
+        private Request $request,
+        private UrlGeneratorInterface $router
+    ) {
         $this->request = $request;
 
         $limit = $request->query->getInt('limit', self::DEFAULT_LIMIT);
@@ -47,9 +48,29 @@ class RequestContext
         return $this->request->attributes->get('_route', null);
     }
 
-    public function getRouteAttr(): array
+    public function getRouteAttributes(): array
     {
         return $this->request->attributes->get('_route_params', []);
+    }
+
+    public function generateUrl(array $params): string
+    {
+
+        $url = $this->router->generate($this->getRoute(), $this->getRouteAttributes());
+        $queryParams = $this->mergeQueryParams($params);
+
+        // Symfony gère les attributs de la route et les parametres de query string automatiquement
+        // Le problème étant que si ma route est /subject/{id} et que je passe ['id' => 2] en parametre
+        // Symfony ne semble pas générer la route correment étant donné que le parametre id est déjà présent dans la route
+        // Et que les parametres de query string sont mergé avec les attributs de la route
+        // On passe par http_build_query pour plus de clarté et séparer les parametres de la route et les parametres de query string
+        
+        if (!empty($queryParams)) {
+            $url = $url . '?' . http_build_query($queryParams);
+        }
+
+        return $url;
+
     }
 
     public function getFilters(): array

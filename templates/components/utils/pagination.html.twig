@@ -1,8 +1,13 @@
 <ul class="pagination pagination-sm justify-content-end mb-0">
 	{% for page in this.getPages() %}
-		<li class="page-item {{ page.active ? 'active' : '' }}">
-			{% set queryPrms = this.context.mergeQueryParams({'offset': page.offset}) %}
-			<a class="page-link" href="{{ path(this.context.getRoute(), this.context.getRouteAttr()|merge(queryPrms)) }}">{{ page.num }}</a>
-		</li>
+		{% if page.type == 'separator' %}
+			<li class="page-item">
+				<button class="page-link disabled" type="button">{{ page.label }}</button>
+			</li>
+		{% else %}
+			<li class="page-item {{ page.active ? 'active' : '' }}">
+				<a class="page-link" href="{{ page.url }}">{{ page.label }}</a>
+			</li>
+		{% endif %}
 	{% endfor %}
 </ul>

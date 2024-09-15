@@ -4,13 +4,14 @@ namespace App\Service;
 use App\Utils\RequestContext;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 abstract class AbstractService
 {
-    protected EntityManagerInterface $em;
-
-    public function __construct(EntityManagerInterface $em)
-    {
+    public function __construct(
+        private EntityManagerInterface $em,
+        private UrlGeneratorInterface $router
+    ) {
         $this->em = $em;
     }
 
@@ -23,7 +24,7 @@ abstract class AbstractService
 
     public function getList(Request $request, array $extraFilters = []): array
     {
-        $context = new RequestContext($request);
+        $context = new RequestContext($request, $this->router);
         $filters = $this->getFilters($request);
         $filters = array_merge($filters, $extraFilters);
         return $this->fetchList($context, $filters);
