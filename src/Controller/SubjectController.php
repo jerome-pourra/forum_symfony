@@ -32,8 +32,17 @@ class SubjectController extends AbstractCustomController
         $form->handleRequest($request);
 
         $result = $this->subjectService->getList($request);
+
+        $subjects = [];
+        foreach ($result['items'] as $subject) {
+            $subjects[] = [
+                'entity' => $subject,
+                'messagesCount' => $this->messageService->getCountBySubject($subject)
+            ];
+        }
+
         return $this->render('subjects/list.html.twig', [
-            'items' => $result['items'],
+            'subjects' => $subjects,
             'count' => $result['count'],
             'context' => $result['context'],
             'formFilters' => $form->createView(),

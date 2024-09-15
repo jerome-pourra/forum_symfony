@@ -22,10 +22,10 @@
 		</div>
 	</nav>
 
-	{% if items|length > 0 %}
+	{% if subjects|length > 0 %}
 		<ul class="list-group">
-			{% for entity in items %}
-				<twig:Subject:SubjectRowItem subject="{{ entity }}"/>
+			{% for subject in subjects %}
+				<twig:Subject:SubjectRowItem subject="{{ subject.entity }}" count="{{ subject.messagesCount }}"/>
 			{% endfor %}
 		</ul>
 		<div class="text-end">

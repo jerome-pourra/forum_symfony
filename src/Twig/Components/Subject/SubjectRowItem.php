@@ -10,6 +10,7 @@ class SubjectRowItem
 {
 
     public Subject $subject;
+    public int $count;
 
     public function getIconFromStatus(): array
     {

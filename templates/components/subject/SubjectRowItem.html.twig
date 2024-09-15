@@ -7,6 +7,7 @@
 				{% set icon = this.getIconFromStatus(subject.status) %}
 				<span class="material-symbols-outlined text-{{ icon.color }} me-3">{{ icon.icon }}</span>
 				<a href="{{ path('app_subject_item', {'id': this.subject.id}) }}" class="link-primary text-truncate text-decoration-none">{{ this.subject.title }}</a>
+				<small>{{ this.count }}</small>
 			</div>
 		</div>
 

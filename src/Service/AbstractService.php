@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 abstract class AbstractService
 {
     public function __construct(
-        private EntityManagerInterface $em,
+        protected EntityManagerInterface $em,
         private UrlGeneratorInterface $router
     ) {
         $this->em = $em;
@@ -53,7 +53,7 @@ abstract class AbstractService
     private function fetchList(RequestContext $context, array $criterias): array
     {
         $items = $this->em->getRepository($this->getRepository())->findBy($criterias, $context->getOrderBy(), $context->getLimit(), $context->getOffset());
-        $count = count($this->em->getRepository($this->getRepository())->findBy($criterias));
+        $count = $this->fetchCount($criterias);
         return [
             'items' => $items,
             'count' => $count,
@@ -64,5 +64,10 @@ abstract class AbstractService
     private function fetchOne(array $criterias): object
     {
         return $this->em->getRepository($this->getRepository())->findOneBy($criterias);
+    }
+
+    private function fetchCount(array $criterias): int
+    {
+        return count($this->em->getRepository($this->getRepository())->findBy($criterias));
     }
 }
